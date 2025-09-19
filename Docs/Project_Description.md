@@ -55,9 +55,7 @@ This project focuses on the design and simulation of a **3 MW Solar Photovoltaic
 
 - Used to regulate output voltage of boost converter.
 - **Control law:**
-$$
-u(t) = K_p \cdot e(t) + K_i \int e(t) \, dt + K_d \frac{de(t)}{dt}
-$$
+The PID control law is: u(t) = Kp * e(t) + Ki * ∫ e(t) dt + Kd * de(t)/dt
 
 - Ensures:
 - Reduced oscillations
