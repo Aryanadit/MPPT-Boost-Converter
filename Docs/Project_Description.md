@@ -1,3 +1,64 @@
+# Project Description: MPPT Control of 3 MW Solar PV using Boost Converter
+
+## 1. Introduction
+
+This project focuses on the design and simulation of a **3 MW Solar Photovoltaic (PV) system** integrated with a **DC-DC boost converter**. The system employs the **Perturb & Observe (P\&O) Maximum Power Point Tracking (MPPT) algorithm** to maximize power extraction from the PV array, with a **PID controller** ensuring voltage stability. The complete system is modeled and validated in **MATLAB/Simulink**.
+
+---
+
+## 2. Objectives
+
+- Develop a **Simulink model** of a 3 MW PV system with boost converter.
+- Implement **P\&O MPPT** for tracking the maximum power point.
+- Design a **PID controller** to regulate converter output voltage.
+- Validate the performance of the system through simulation results.
+
+---
+
+## 3. Methodology
+
+### 3.1 PV System Modeling
+
+- A **3 MW PV array** was modeled using MATLAB/Simulink PV block parameters (irradiance, temperature, Voc, Isc, Vmp, Imp).
+- The output of the PV system is nonlinear and varies with irradiance and load.
+
+### 3.2 DC-DC Boost Converter Design
+
+- The boost converter was chosen to step up the PV voltage to the required DC bus level.
+- Key equations used:
+
+  - **Duty Cycle (D):**
+    ```
+    D = 1 - (Vin / Vout)
+    ```
+  - **Inductor Selection (L):**
+    ```
+    L = (Vin * D) / (ΔIL * fs)
+    ```
+  - **Capacitor Selection (C):**
+    ```
+    C = (Iout * D) / (ΔVout * fs)
+    ```
+
+### 3.3 MPPT Algorithm (P\&O)
+
+- **Principle:** Incrementally perturb the PV voltage and observe power changes.
+- **Steps:**
+  1. Measure PV voltage (V) and current (I).
+  2. Calculate power: `P = V × I`.
+  3. Perturb voltage by small step and check change in power.
+  4. If ΔP > 0, continue in the same direction. If ΔP < 0, reverse direction.
+- **Advantage:** Simple and low-cost.
+- **Limitation:** Oscillations around MPP.
+
+### 3.4 PID Controller
+
+- Used to regulate output voltage of boost converter.
+- **Control law:**
+$$
+u(t) = K_p \cdot e(t) + K_i \int e(t) \, dt + K_d \frac{de(t)}{dt}
+$$
+
 - Ensures:
 - Reduced oscillations
 - Faster dynamic response
